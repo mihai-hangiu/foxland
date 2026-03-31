@@ -253,6 +253,13 @@ def format_price_for_filename(price):
     return str(price)
 
 
+def format_pct(val):
+    """Format a percentage value with % suffix. Returns empty string if no value."""
+    if val == "" or val is None:
+        return ""
+    return f"{val}%"
+
+
 def process_folder(folder_path, debug=False):
     """Process all PDF files in the given folder."""
     if not os.path.isdir(folder_path):
@@ -268,16 +275,10 @@ def process_folder(folder_path, debug=False):
         print(f"No PDF files found in '{folder_path}'.")
         sys.exit(0)
 
-    print(f"Found {len(files_lst)} PDF file(s) in '{folder_path}'.\n")
+    print(f"Found {len(files_lst)} PDF file(s) in '{folder_path}'.\n", file=sys.stderr)
 
-    # Tab-separated header for Excel
-    header_lst = [
-        "Date", "Ticker", "Action", "Shares", "Price",
-        "Portfolio_Pct", "Accumulate_Below",
-        "Sell_Above_Min", "Sell_Above_Max",
-        "Risk", "Position_Value", "Term_or_Sell_Info"
-    ]
-    print("\t".join(header_lst))
+    # Collect all trade data, then sort and output
+    all_trades_lst = []
 
     for filename in files_lst:
         filepath = os.path.join(folder_path, filename)
@@ -376,24 +377,87 @@ def process_folder(folder_path, debug=False):
         else:
             last_col = info_dct.get("term", "")
 
-        # Print tab-separated row
+        # Store extracted data for output
+        info_dct["_date_str"] = date_str
+        info_dct["_last_col"] = last_col
+        all_trades_lst.append(info_dct)
+
+    # Sort trades descending by date (newest first), UNKNOWN goes to end
+    all_trades_lst.sort(
+        key=lambda d: d["_date_str"] if d["_date_str"] != "UNKNOWN" else "0000-00-00",
+        reverse=True
+    )
+
+    # --- Console output (original format) ---
+    console_header_lst = [
+        "Date", "Ticker", "Action", "Shares", "Price",
+        "Portfolio_Pct", "Accumulate_Below",
+        "Sell_Above_Min", "Sell_Above_Max",
+        "Risk", "Position_Value", "Term_or_Sell_Info"
+    ]
+    print("\t".join(console_header_lst))
+
+    for t in all_trades_lst:
         row_lst = [
-            date_str,
-            info_dct.get("ticker", ""),
-            info_dct.get("action", ""),
-            str(info_dct.get("shares", "")),
-            str(info_dct.get("price", "")),
-            str(info_dct.get("portfolio_pct", "")),
-            str(info_dct.get("accumulate_below", "")),
-            str(info_dct.get("sell_above_min", "")),
-            str(info_dct.get("sell_above_max", "")),
-            info_dct.get("risk", ""),
-            str(info_dct.get("position_value", "")),
-            last_col
+            t["_date_str"],
+            t.get("ticker", ""),
+            t.get("action", ""),
+            str(t.get("shares", "")),
+            str(t.get("price", "")),
+            format_pct(t.get("portfolio_pct", "")),
+            str(t.get("accumulate_below", "")),
+            str(t.get("sell_above_min", "")),
+            str(t.get("sell_above_max", "")),
+            t.get("risk", ""),
+            str(t.get("position_value", "")),
+            t["_last_col"]
         ]
         print("\t".join(row_lst))
 
-    print("\n# Done. Copy the output (skip lines starting with #) and paste into Excel.",
+    # --- File output (different column order for Excel) ---
+    # Columns: Ticker, Date, Shares, Price, [blank for total], Portfolio_Pct,
+    #          [blank], Accumulate_Below, Sell_Above_Min, Sell_Above_Max, Term
+    # For SELL lines: sell info goes in the Sell_Above_Max cell
+    file_header_lst = [
+        "Ticker", "Date", "Shares", "Price", "Total",
+        "Portfolio_Pct", "", "Accumulate_Below",
+        "Sell_Above_Min", "Sell_Above_Max", "Term"
+    ]
+
+    file_lines_lst = ["\t".join(file_header_lst)]
+    for t in all_trades_lst:
+        is_sell = (t.get("action") == "SELL")
+
+        # For SELL: put sell info (type + return) in Sell_Above_Max column
+        if is_sell:
+            sell_above_max_cell = t["_last_col"]
+        else:
+            sell_above_max_cell = str(t.get("sell_above_max", ""))
+
+        file_row_lst = [
+            t.get("ticker", ""),
+            t["_date_str"],
+            str(t.get("shares", "")),
+            str(t.get("price", "")),
+            "",                                          # blank for total
+            format_pct(t.get("portfolio_pct", "")),
+            "",                                          # blank
+            str(t.get("accumulate_below", "")),
+            str(t.get("sell_above_min", "")),
+            sell_above_max_cell,
+            t.get("term", "") if not is_sell else ""
+        ]
+        file_lines_lst.append("\t".join(file_row_lst))
+
+    output_path = os.path.join(folder_path, "trades_output.txt")
+    with open(output_path, "w", encoding="utf-8") as f:
+        for line in file_lines_lst:
+            f.write(line + "\n")
+
+    print(f"\n# Output saved to: {output_path}", file=sys.stderr)
+    print(f"# {len(all_trades_lst)} trade(s) extracted, sorted by date (newest first).",
+          file=sys.stderr)
+    print("# Copy lines from the .txt file and paste into Excel (tab-separated).",
           file=sys.stderr)
 
 
