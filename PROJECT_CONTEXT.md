@@ -111,7 +111,7 @@ and middle-dot variants):
 |--------------------|-------------------------------------------------------------|
 | Action BUY         | `am cumpărat` / `am cump·rat`                              |
 | Action SELL        | `am vândut` / `am v·ndut` / `am lichidat`                   |
-| Ticker + shares    | `N de acțiuni în TICKER` (multiple fallback patterns)       |
+| Ticker + shares    | `N de acțiuni [(...)] în TICKER` — see Ticker Extraction below |
 | Price              | `la prețul [de] [aprox.] $PRICE`                            |
 | Portfolio %        | `N% din portofoliu`                                         |
 | Accumulate below   | `acumulare sub $N`                                          |
@@ -121,6 +121,21 @@ and middle-dot variants):
 | Position value     | `Poziția este evaluată la $N`                               |
 | Sell type          | `vânzare completă` / `vânzare parțială`                     |
 | Return %           | `randament +N%` / `randament -N%`                           |
+
+## Ticker Extraction
+
+Tickers are always uppercase letters only (`[A-Z]{2,10}`), case-sensitive matching.
+This naturally excludes Romanian words like `alt`, `cont`, `acest`, etc.
+
+Extraction uses a priority chain:
+
+1. **Structured trade line** (most reliable): looks for `am cumpărat/vândut N de acțiuni
+   [(...)] în TICKER` — the parenthetical like `(net)` or `(acumulare)` between
+   `acțiuni` and `în` is optional. This anchors to the formal trade confirmation line.
+2. **Generic pattern**: `N de acțiuni [(...)] în TICKER` anywhere in text, but only
+   matches uppercase-letter sequences (so `în alt cont` can never match).
+3. **Fallback**: uppercase word after `în` following `acțiuni`.
+4. **Last resort**: `în TICKER (` pattern.
 
 ## Romanian Diacritics Handling
 
