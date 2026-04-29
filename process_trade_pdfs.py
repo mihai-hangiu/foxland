@@ -332,39 +332,41 @@ def process_folder(folder_path, debug=False):
         if not info_dct.get("price"):
             rename_warnings_lst.append("PRICE: could not extract price")
 
-        # Rename file if it doesn't already have a full date prefix
-        if not has_full_date_prefix(filename):
-            if rename_warnings_lst:
-                # Do NOT rename — show visible warning instead
-                print(f"\n  *** WARNING: Skipping rename for '{filename}' ***",
-                      file=sys.stderr)
-                for w in rename_warnings_lst:
-                    print(f"  ***   {w}", file=sys.stderr)
-                print(f"  *** Please rename this file manually. ***\n",
+        # Rename file if it doesn't already match the final pattern (YYYY-MM-DD_...)
+        if has_full_date_prefix(filename):
+            print(f"# Already named: '{filename}' (skipping rename, data extracted)",
+                  file=sys.stderr)
+        elif rename_warnings_lst:
+            # Do NOT rename — show visible warning instead
+            print(f"\n  *** WARNING: Skipping rename for '{filename}' ***",
+                  file=sys.stderr)
+            for w in rename_warnings_lst:
+                print(f"  ***   {w}", file=sys.stderr)
+            print(f"  *** Please rename this file manually. ***\n",
+                  file=sys.stderr)
+        else:
+            price_str = format_price_for_filename(info_dct.get("price", ""))
+            action = info_dct.get("action", "UNKNOWN").lower()
+            ticker = info_dct.get("ticker", "UNKNOWN")
+            new_name = f"{date_str}_{ticker}_{action}_{price_str}.pdf"
+            new_path = os.path.join(folder_path, new_name)
+
+            # Avoid overwriting existing files
+            if os.path.exists(new_path):
+                print(f"# '{filename}': '{new_name}' already exists, skipping rename.",
                       file=sys.stderr)
             else:
-                price_str = format_price_for_filename(info_dct.get("price", ""))
-                action = info_dct.get("action", "UNKNOWN").lower()
-                ticker = info_dct.get("ticker", "UNKNOWN")
-                new_name = f"{date_str}_{ticker}_{action}_{price_str}.pdf"
-                new_path = os.path.join(folder_path, new_name)
-
-                # Avoid overwriting existing files
-                if os.path.exists(new_path):
-                    print(f"# '{filename}': '{new_name}' already exists, skipping rename.",
+                try:
+                    os.rename(filepath, new_path)
+                    print(f"# Renamed: '{filename}' -> '{new_name}'", file=sys.stderr)
+                except PermissionError:
+                    print(f"\n  *** WARNING: Cannot rename '{filename}' - file is locked by another process. ***",
                           file=sys.stderr)
-                else:
-                    try:
-                        os.rename(filepath, new_path)
-                        print(f"# Renamed: '{filename}' -> '{new_name}'", file=sys.stderr)
-                    except PermissionError:
-                        print(f"\n  *** WARNING: Cannot rename '{filename}' - file is locked by another process. ***",
-                              file=sys.stderr)
-                        print(f"  ***          Close the file and try again.                                    ***\n",
-                              file=sys.stderr)
-                    except OSError as e:
-                        print(f"\n  *** WARNING: Cannot rename '{filename}': {e} ***\n",
-                              file=sys.stderr)
+                    print(f"  ***          Close the file and try again.                                    ***\n",
+                          file=sys.stderr)
+                except OSError as e:
+                    print(f"\n  *** WARNING: Cannot rename '{filename}': {e} ***\n",
+                          file=sys.stderr)
 
         # Build last column: term for BUY, sell type + return for SELL
         if info_dct.get("action") == "SELL":
