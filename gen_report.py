@@ -451,9 +451,9 @@ def main():
     # Generate HTML
     html_content = generate_html(trades_lst, prices_dct, price_date_str, year_label)
 
-    # Write HTML next to the JSON file: foxland-trades-YEAR.html
+    # Write HTML next to the JSON file: trades-YEAR.html
     output_dir  = os.path.dirname(json_path) or "."
-    output_path = os.path.join(output_dir, f"foxland-trades-{year_label}.html")
+    output_path = os.path.join(output_dir, f"trades-{year_label}.html")
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html_content)
