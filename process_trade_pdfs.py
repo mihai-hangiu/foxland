@@ -34,35 +34,53 @@ def extract_trade_info(text):
     else:
         info_dct["action"] = "UNKNOWN"
 
-    # Ticker + shares: "N de acțiuni în TICKER"
-    # ac[tț·]iuni handles actiuni / acțiuni / ac·iuni
-    # [iî·]n handles in / în / ·n
+    # Ticker + shares extraction strategy:
+    # 1. First try the STRUCTURED trade line (after "am cumpărat/vândut") — most reliable
+    # 2. Fall back to generic patterns if structured line not found
+    # The structured line may have parenthetical words: "acțiuni (net) în TICKER"
+    # Tickers are ALWAYS uppercase letters only (e.g., IESC, ERO, POWL)
+
+    # Priority 1: structured line "am cumpărat/vândut N de acțiuni [(...)] în TICKER"
     m = re.search(
-        r'(\d+)\s+(?:de\s+)?ac[tț·]iuni\s+[iî·]n\s+([A-Z0-9.]{1,10})',
-        text_norm, re.IGNORECASE
+        r'am\s+(?:cump[aă·]rat|v[aâ·]ndut|lichidat)\s+'
+        r'(\d+)\s+(?:de\s+)?ac[tț·]iuni'
+        r'(?:\s*\([^)]*\))?\s+'       # optional parenthetical like (net), (acumulare)
+        r'[iî·]n\s+([A-Z]{2,10})',
+        text_norm
     )
     if m:
         info_dct["shares"] = int(m.group(1))
-        ticker = m.group(2).strip(" .,()").upper()
-        info_dct["ticker"] = ticker
+        info_dct["ticker"] = m.group(2)
 
-    # Fallback: uppercase word after "in" / "în" / "·n"
+    # Priority 2: generic "N de acțiuni [(...)] în TICKER"
+    if not info_dct.get("ticker"):
+        for m in re.finditer(
+            r'(\d+)\s+(?:de\s+)?ac[tț·]iuni'
+            r'(?:\s*\([^)]*\))?\s+'
+            r'[iî·]n\s+([A-Z]{2,10})',
+            text_norm
+        ):
+            info_dct["shares"] = int(m.group(1))
+            info_dct["ticker"] = m.group(2)
+            break
+
+    # Fallback: uppercase word after "în" that looks like a ticker
     if not info_dct.get("ticker"):
         m = re.search(
-            r'ac[tț·]iuni\s+[iî·]n\s+([A-Z][A-Z0-9.]{0,9})',
+            r'ac[tț·]iuni(?:\s*\([^)]*\))?\s+[iî·]n\s+([A-Z]{2,10})',
             text_norm
         )
         if m:
-            info_dct["ticker"] = m.group(1).strip(" .,()").upper()
+            info_dct["ticker"] = m.group(1)
 
     # Fallback: "în TICKER (" pattern
     if not info_dct.get("ticker"):
         m = re.search(
-            r'[iî·]n\s+([A-Z][A-Z0-9.]{0,9})\s*\(',
+            r'[iî·]n\s+([A-Z]{2,10})\s*\(',
             text_norm
         )
         if m:
-            info_dct["ticker"] = m.group(1).strip(" .,()").upper()
+            info_dct["ticker"] = m.group(1)
 
     # Shares: standalone pattern if not found above
     if not info_dct.get("shares"):

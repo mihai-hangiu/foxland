@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trade Summary Report 2026</title>
+<title>Trade Summary Report</title>
 <style>
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -66,7 +66,7 @@
 </style>
 </head>
 <body>
-<h1>Trade Summary Report 2026</h1>
+<h1>Trade Summary Report</h1>
 <p>5 trade(s). Click <b>Date</b> or <b>Ticker</b> to sort.</p>
 <table id="tradesTable">
 <thead>
@@ -81,7 +81,7 @@
   <th style="text-align:right">Sell Above Min</th>
   <th style="text-align:right">Sell Above Max</th>
   <th style="text-align:right">Price 29-Apr</th>
-  <th style="text-align:right">Avg. Upside</th>
+  <th style="text-align:right">Upside</th>
   <th>Risk</th>
   <th style="text-align:right">Position Value</th>
   <th>Term / Sell Info</th>
@@ -170,25 +170,8 @@ document.querySelectorAll('th.sortable').forEach(th => {
     th.addEventListener('click', () => sortTable(th.dataset.sort));
 });
 
-// Initial render sorted by date descending (no toggle)
-renderInitial();
-
-function renderInitial() {
-    const sorted = [...tradesData].sort((a, b) => {
-        let va = a['date'] || '';
-        let vb = b['date'] || '';
-        if (va === 'UNKNOWN') return 1;
-        if (vb === 'UNKNOWN') return -1;
-        return vb.localeCompare(va);  // descending
-    });
-    // Set arrow active on date
-    const arrow = document.getElementById('arrow-date');
-    if (arrow) {
-        arrow.classList.add('active');
-        arrow.textContent = '▼';
-    }
-    renderTable(sorted);
-}
+// Initial render sorted by date desc
+sortTable('date');
 </script>
 
 </body>
