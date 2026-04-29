@@ -10,6 +10,7 @@ Process PDF trade confirmation files from a given folder.
 import sys
 import os
 import re
+import json
 import fitz  # PyMuPDF
 
 
@@ -456,7 +457,33 @@ def process_folder(folder_path, debug=False):
         for line in file_lines_lst:
             f.write(line + "\n")
 
+    # --- JSON output (all extracted data, clean keys) ---
+    json_trades_lst = []
+    for t in all_trades_lst:
+        trade_dct = {
+            "date":             t.get("_date_str", ""),
+            "ticker":           t.get("ticker", ""),
+            "action":           t.get("action", ""),
+            "shares":           t.get("shares", ""),
+            "price":            t.get("price", ""),
+            "portfolio_pct":    t.get("portfolio_pct", ""),
+            "accumulate_below": t.get("accumulate_below", ""),
+            "sell_above_min":   t.get("sell_above_min", ""),
+            "sell_above_max":   t.get("sell_above_max", ""),
+            "risk":             t.get("risk", ""),
+            "position_value":   t.get("position_value", ""),
+            "term":             t.get("term", ""),
+            "sell_type":        t.get("sell_type", ""),
+            "return_pct":       t.get("return_pct", ""),
+        }
+        json_trades_lst.append(trade_dct)
+
+    json_path = os.path.join(folder_path, "trades_data.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(json_trades_lst, f, indent=2, ensure_ascii=False)
+
     print(f"\n# Output saved to: {output_path}", file=sys.stderr)
+    print(f"# JSON saved to:   {json_path}", file=sys.stderr)
     print(f"# {len(all_trades_lst)} trade(s) extracted, sorted by date (newest first).",
           file=sys.stderr)
     print("# Copy lines from the .txt file and paste into Excel (tab-separated).",
