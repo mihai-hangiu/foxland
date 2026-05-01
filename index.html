@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Market Prices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg        : #09090f;
+    --bg2       : #0f0f1a;
+    --bg3       : #13131f;
+    --border    : #1e1e30;
+    --accent    : #4fffb0;
+    --accent2   : #7b61ff;
+    --red       : #ff4d6d;
+    --green     : #4fffb0;
+    --amber     : #ffd166;
+    --blue      : #4dc9ff;
+    --muted     : #3a3a55;
+    --text      : #c8c8e0;
+    --text-dim  : #6060a0;
+    --pre       : #ffd166;
+    --post      : #7b61ff;
+    --regular   : #4fffb0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background      : var(--bg);
+    color           : var(--text);
+    font-family     : 'JetBrains Mono', monospace;
+    font-size       : 13px;
+    min-height      : 100vh;
+    padding         : 24px 20px 60px;
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(123,97,255,0.12), transparent);
+  }
+
+  /* ── HEADER ─────────────────────────────────────────── */
+  header {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : flex-end;
+    margin-bottom  : 28px;
+    padding-bottom : 18px;
+    border-bottom  : 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size  : 22px;
+    color      : #fff;
+    letter-spacing: 0.04em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .meta {
+    text-align  : right;
+    line-height : 1.6;
+    color       : var(--text-dim);
+    font-size   : 11px;
+  }
+
+  .meta .timestamp { color: var(--accent); font-weight: 600; font-size: 12px; }
+
+  /* ── LEGEND ─────────────────────────────────────────── */
+  .legend {
+    display        : flex;
+    gap            : 20px;
+    margin-bottom  : 18px;
+    font-size      : 11px;
+    color          : var(--text-dim);
+    flex-wrap      : wrap;
+  }
+
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+  .dot-regular { background: var(--regular); }
+  .dot-pre     { background: var(--pre);     box-shadow: 0 0 6px var(--pre); }
+  .dot-post    { background: var(--post);    box-shadow: 0 0 6px var(--post); }
+  .dot-closed  { background: var(--muted);   }
+
+  /* ── FILTERS ─────────────────────────────────────────── */
+  .controls {
+    display        : flex;
+    gap            : 10px;
+    margin-bottom  : 18px;
+    flex-wrap      : wrap;
+    align-items    : center;
+  }
+
+  .filter-btn {
+    background    : var(--bg3);
+    border        : 1px solid var(--border);
+    color         : var(--text-dim);
+    padding       : 5px 14px;
+    border-radius : 4px;
+    cursor        : pointer;
+    font-family   : 'JetBrains Mono', monospace;
+    font-size     : 11px;
+    letter-spacing: 0.05em;
+    transition    : all 0.15s;
+  }
+
+  .filter-btn:hover        { border-color: var(--accent2); color: var(--text); }
+  .filter-btn.active       { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+  .filter-btn.sort-active  { border-color: var(--accent); color: var(--accent); }
+
+  .sep { color: var(--muted); }
+
+  /* ── TABLE ───────────────────────────────────────────── */
+  .table-wrap {
+    overflow-x    : auto;
+    border        : 1px solid var(--border);
+    border-radius : 6px;
+    background    : var(--bg2);
+  }
+
+  table {
+    width          : 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    background    : var(--bg3);
+    color         : var(--text-dim);
+    font-weight   : 500;
+    font-size     : 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding       : 10px 14px;
+    text-align    : left;
+    border-bottom : 1px solid var(--border);
+    white-space   : nowrap;
+    cursor        : pointer;
+    user-select   : none;
+    transition    : color 0.15s;
+  }
+
+  thead th:hover { color: var(--accent); }
+  thead th.sort-asc::after  { content: ' ↑'; color: var(--accent); }
+  thead th.sort-desc::after { content: ' ↓'; color: var(--accent); }
+
+  thead th:not(:first-child) { text-align: right; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition   : background 0.1s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover      { background: rgba(79, 255, 176, 0.03); }
+
+  td {
+    padding    : 9px 14px;
+    white-space: nowrap;
+  }
+
+  td:not(:first-child) { text-align: right; }
+
+  /* Ticker cell */
+  .td-ticker {
+    font-weight   : 700;
+    font-size     : 13px;
+    color         : #fff;
+    display       : flex;
+    align-items   : center;
+    gap           : 8px;
+  }
+
+  .state-badge {
+    font-size     : 9px;
+    font-weight   : 600;
+    letter-spacing: 0.08em;
+    padding       : 2px 6px;
+    border-radius : 3px;
+    text-transform: uppercase;
+  }
+
+  .badge-REGULAR { background: rgba(79,255,176,0.12);  color: var(--regular); }
+  .badge-PRE     { background: rgba(255,209,102,0.12); color: var(--pre);     }
+  .badge-POST    { background: rgba(123,97,255,0.12);  color: var(--post);    }
+  .badge-POSTPOST{ background: rgba(123,97,255,0.12);  color: var(--post);    }
+  .badge-CLOSED  { background: rgba(58,58,85,0.4);     color: var(--muted);   }
+  .badge-UNKNOWN { background: rgba(58,58,85,0.4);     color: var(--muted);   }
+
+  /* Price cells */
+  .price-main { font-weight: 600; font-size: 14px; color: #fff; }
+
+  .price-pre  { color: var(--pre);  font-size: 12px; }
+  .price-post { color: var(--post); font-size: 12px; }
+  .price-na   { color: var(--muted); font-size: 12px; }
+
+  .change-pos { color: var(--green); }
+  .change-neg { color: var(--red);   }
+  .change-neu { color: var(--muted); }
+
+  .prev-close { color: var(--text-dim); }
+
+  /* ── ERRORS ──────────────────────────────────────────── */
+  .errors-section {
+    margin-top  : 20px;
+    padding     : 12px 16px;
+    background  : rgba(255, 77, 109, 0.06);
+    border      : 1px solid rgba(255, 77, 109, 0.2);
+    border-radius: 6px;
+    font-size   : 11px;
+    color       : var(--red);
+  }
+
+  /* ── LOADING / ERROR STATE ───────────────────────────── */
+  .status-msg {
+    text-align : center;
+    padding    : 60px 20px;
+    color      : var(--text-dim);
+    font-size  : 13px;
+  }
+
+  .spinner {
+    display      : inline-block;
+    width        : 18px;
+    height       : 18px;
+    border       : 2px solid var(--muted);
+    border-top   : 2px solid var(--accent);
+    border-radius: 50%;
+    animation    : spin 0.8s linear infinite;
+    margin-right : 10px;
+    vertical-align: middle;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── STALENESS WARNING ───────────────────────────────── */
+  .stale-warn {
+    display      : inline-block;
+    margin-left  : 10px;
+    font-size    : 10px;
+    color        : var(--amber);
+    padding      : 2px 8px;
+    border       : 1px solid rgba(255,209,102,0.3);
+    border-radius: 3px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    margin-top  : 30px;
+    text-align  : center;
+    font-size   : 10px;
+    color       : var(--text-dim);
+    line-height : 1.8;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MARKET<span>PULSE</span></div>
+  <div class="meta">
+    <div id="timestamp" class="timestamp">—</div>
+    <div id="stale-label"></div>
+    <div style="margin-top:2px">prices updated every ~30 min · 16:30–23:00 EET</div>
+  </div>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><span class="dot dot-regular"></span> Regular market</div>
+  <div class="legend-item"><span class="dot dot-pre"></span>     Pre-market</div>
+  <div class="legend-item"><span class="dot dot-post"></span>    After-hours</div>
+  <div class="legend-item"><span class="dot dot-closed"></span>  Closed</div>
+</div>
+
+<div class="controls">
+  <button class="filter-btn active" onclick="setFilter('ALL', this)">All</button>
+  <button class="filter-btn"        onclick="setFilter('REGULAR', this)">Regular</button>
+  <button class="filter-btn"        onclick="setFilter('PRE', this)">Pre-market</button>
+  <button class="filter-btn"        onclick="setFilter('POST', this)">After-hours</button>
+  <span class="sep">|</span>
+  <button class="filter-btn" onclick="sortBy('ticker')">A–Z</button>
+  <button class="filter-btn" onclick="sortBy('change_pct')">By Change %</button>
+</div>
+
+<div class="table-wrap">
+  <div id="content" class="status-msg"><span class="spinner"></span>Loading prices...</div>
+</div>
+
+<div id="errors-section"></div>
+
+<footer>
+  Data sourced from Yahoo Finance · Prices may be delayed · Not financial advice
+</footer>
+
+<script>
+  let allPrices  = [];
+  let filterState = 'ALL';
+  let sortState   = { col: 'ticker', dir: 'asc' };
+
+  // ── FETCH prices.json ──────────────────────────────────────────
+  async function loadPrices() {
+    try {
+      const resp = await fetch('prices.json?t=' + Date.now()); // cache-bust
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const data = await resp.json();
+
+      allPrices = data.prices || [];
+      renderTimestamp(data.fetched_at, data.fetched_at_tz);
+      renderErrors(data.errors || []);
+      renderTable();
+    } catch (err) {
+      document.getElementById('content').innerHTML =
+        `<div class="status-msg">⚠ Could not load prices.json<br><small style="color:var(--muted)">${err.message}</small></div>`;
+    }
+  }
+
+  // ── TIMESTAMP + STALENESS ─────────────────────────────────────
+  function renderTimestamp(fetchedAt, tz) {
+    document.getElementById('timestamp').textContent = `Last update: ${fetchedAt} ${tz}`;
+
+    // Warn if data is older than 70 min
+    const fetched  = new Date(fetchedAt.replace(' ', 'T') + '+03:00');
+    const ageMin   = (Date.now() - fetched.getTime()) / 60000;
+    if (ageMin > 70) {
+      document.getElementById('stale-label').innerHTML =
+        `<span class="stale-warn">⚠ data is ${Math.round(ageMin)} min old</span>`;
+    }
+  }
+
+  // ── ERRORS ────────────────────────────────────────────────────
+  function renderErrors(errors) {
+    if (!errors.length) return;
+    const sec = document.getElementById('errors-section');
+    sec.innerHTML = `<div class="errors-section">Failed to fetch: ${errors.map(e => `<b>${e.ticker}</b> (${e.error})`).join(', ')}</div>`;
+  }
+
+  // ── FILTER ────────────────────────────────────────────────────
+  function setFilter(val, btn) {
+    filterState = val;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTable();
+  }
+
+  // ── SORT ──────────────────────────────────────────────────────
+  function sortBy(col) {
+    if (sortState.col === col) {
+      sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+    } else {
+      sortState = { col, dir: col === 'ticker' ? 'asc' : 'desc' };
+    }
+    renderTable();
+  }
+
+  function getSortValue(row, col) {
+    if (col === 'ticker')     return row.ticker;
+    if (col === 'change_pct') return row.change_pct ?? -999;
+    return row[col] ?? -999;
+  }
+
+  // ── PRICE DISPLAY ─────────────────────────────────────────────
+  function displayPrice(row) {
+    const state = row.market_state;
+    const reg   = row.regular != null ? `$${row.regular.toFixed(2)}` : '—';
+
+    if (state === 'PRE' && row.pre != null) {
+      return `<span class="price-main price-pre">$${row.pre.toFixed(2)}</span>
+              <br><span class="price-na" style="font-size:10px">reg $${row.regular?.toFixed(2) ?? '—'}</span>`;
+    }
+    if ((state === 'POST' || state === 'POSTPOST') && row.post != null) {
+      return `<span class="price-main price-post">$${row.post.toFixed(2)}</span>
+              <br><span class="price-na" style="font-size:10px">reg $${row.regular?.toFixed(2) ?? '—'}</span>`;
+    }
+    return `<span class="price-main">${reg}</span>`;
+  }
+
+  function changeClass(pct) {
+    if (pct == null) return 'change-neu';
+    return pct > 0 ? 'change-pos' : pct < 0 ? 'change-neg' : 'change-neu';
+  }
+
+  function formatChange(pct, abs) {
+    if (pct == null) return '<span class="change-neu">—</span>';
+    const sign   = pct >= 0 ? '+' : '';
+    const absStr = abs != null ? `${sign}$${Math.abs(abs).toFixed(2)}` : '';
+    return `<span class="${changeClass(pct)}">${sign}${pct.toFixed(2)}%<br><small>${absStr}</small></span>`;
+  }
+
+  // ── RENDER TABLE ──────────────────────────────────────────────
+  function renderTable() {
+    let rows = [...allPrices];
+
+    // Filter
+    if (filterState !== 'ALL') {
+      rows = rows.filter(r => {
+        if (filterState === 'POST') return r.market_state === 'POST' || r.market_state === 'POSTPOST';
+        return r.market_state === filterState;
+      });
+    }
+
+    // Sort
+    rows.sort((a, b) => {
+      const va = getSortValue(a, sortState.col);
+      const vb = getSortValue(b, sortState.col);
+      if (typeof va === 'string') return sortState.dir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+      return sortState.dir === 'asc' ? va - vb : vb - va;
+    });
+
+    if (!rows.length) {
+      document.getElementById('content').innerHTML = '<div class="status-msg">No data for this filter.</div>';
+      return;
+    }
+
+    const thClass = (col) => {
+      if (sortState.col !== col) return '';
+      return sortState.dir === 'asc' ? 'sort-asc' : 'sort-desc';
+    };
+
+    const html = `
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortBy('ticker')"     class="${thClass('ticker')}">Ticker</th>
+            <th onclick="sortBy('regular')"    class="${thClass('regular')}">Price</th>
+            <th onclick="sortBy('prev_close')" class="${thClass('prev_close')}">Prev Close</th>
+            <th onclick="sortBy('change_pct')" class="${thClass('change_pct')}">Change</th>
+            <th>Pre-market</th>
+            <th>After-hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(r => `
+            <tr>
+              <td>
+                <div class="td-ticker">
+                  ${r.ticker}
+                  <span class="state-badge badge-${r.market_state}">${r.market_state === 'POSTPOST' ? 'POST' : r.market_state}</span>
+                </div>
+              </td>
+              <td>${displayPrice(r)}</td>
+              <td class="prev-close">${r.prev_close != null ? '$' + r.prev_close.toFixed(2) : '—'}</td>
+              <td>${formatChange(r.change_pct, r.change)}</td>
+              <td>${r.pre  != null ? `<span class="price-pre">$${r.pre.toFixed(2)}</span>`  : '<span class="price-na">—</span>'}</td>
+              <td>${r.post != null ? `<span class="price-post">$${r.post.toFixed(2)}</span>` : '<span class="price-na">—</span>'}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`;
+
+    document.getElementById('content').innerHTML = html;
+  }
+
+  // ── INIT ───────────────────────────────────────────────────────
+  loadPrices();
+
+  // Auto-refresh page every 35 min — slightly over the fetch interval so users catch the new prices.json
+  setTimeout(() => location.reload(), 35 * 60 * 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+name: Fetch Stock Prices
+
+on:
+  schedule:
+    # NYSE extended hours: 04:00-20:00 ET (pre-market through after-hours)
+    # ET = UTC-4 (EDT summer) / UTC-5 (EST winter)
+    # Summer (EDT): 04:00 ET = 08:00 UTC, 20:00 ET = 00:00 UTC
+    # Winter (EST): 04:00 ET = 09:00 UTC, 20:00 ET = 01:00 UTC
+    # Cron below covers EDT (summer). For EST winter, first slot shifts 1h later.
+    # Runs every 30 min, Mon-Fri, 08:00-00:00 UTC (covers EDT; slight mismatch in EST winter)
+    - cron: '0,30  8 * * 1-5'
+    - cron: '0,30  9 * * 1-5'
+    - cron: '0,30 10 * * 1-5'
+    - cron: '0,30 11 * * 1-5'
+    - cron: '0,30 12 * * 1-5'
+    - cron: '0,30 13 * * 1-5'
+    - cron: '0,30 14 * * 1-5'
+    - cron: '0,30 15 * * 1-5'
+    - cron: '0,30 16 * * 1-5'
+    - cron: '0,30 17 * * 1-5'
+    - cron: '0,30 18 * * 1-5'
+    - cron: '0,30 19 * * 1-5'
+    - cron: '0,30 20 * * 1-5'
+    - cron: '0,30 21 * * 1-5'
+    - cron: '0,30 22 * * 1-5'
+    - cron: '0,30 23 * * 1-5'
+    - cron: '0     0 * * 2-6'   # midnight UTC Tue-Sat (covers Mon-Fri ET after-hours end)
+  workflow_dispatch:  # allow manual trigger from Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-prices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch prices
+        run: python fetch_prices.py
+
+      - name: Commit and push prices.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add prices.json
+          git diff --cached --quiet || git commit -m "chore: update prices $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
