@@ -6,13 +6,11 @@ No API key required. Runs in GitHub Actions.
 """
 
 import json
-import time
 import requests
 from datetime import datetime, timezone, timedelta
 
 TICKERS_FILE = "tickers.json"
 PRICES_FILE  = "prices.json"
-DELAY_SEC    = 0.5        # polite delay between requests to avoid rate limiting
 TIMEOUT_SEC  = 10
 
 ROMANIAN_TZ  = timezone(timedelta(hours = 3))   # EEST (summer); change to 2 for EET winter
@@ -23,23 +21,17 @@ HEADERS = {
     "Accept-Language" : "en-US,en;q=0.9",
 }
 
-def fetch_yahoo_quote(ticker):
-    """Fetch quote data for a single ticker from Yahoo Finance v8 chart endpoint."""
-    url  = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=1d"
-    resp = requests.get(url, headers = HEADERS, timeout = TIMEOUT_SEC)
-    resp.raise_for_status()
-    data = resp.json()
+def parse_quote(q):
+    """Parse a single quote dict from Yahoo Finance v7 response into our output format."""
+    ticker        = q.get("symbol", "")
+    regular_price = q.get("regularMarketPrice")
+    prev_close    = q.get("regularMarketPreviousClose")
+    pre_price     = q.get("preMarketPrice")
+    post_price    = q.get("postMarketPrice")
+    market_state  = q.get("marketState", "UNKNOWN")   # PRE, REGULAR, POST, POSTPOST, CLOSED
+    currency      = q.get("currency", "USD")
 
-    meta = data["chart"]["result"][0]["meta"]
-
-    regular_price    = meta.get("regularMarketPrice")
-    prev_close       = meta.get("chartPreviousClose") or meta.get("previousClose")
-    pre_price        = meta.get("preMarketPrice")
-    post_price       = meta.get("postMarketPrice")
-    market_state     = meta.get("marketState", "UNKNOWN")   # PRE, REGULAR, POST, CLOSED
-    currency         = meta.get("currency", "USD")
-
-    # Compute change vs previous close — use the most relevant current price
+    # Use the most relevant price for change calculation
     if market_state == "PRE" and pre_price:
         current_price = pre_price
     elif market_state in ("POST", "POSTPOST") and post_price:
@@ -61,31 +53,54 @@ def fetch_yahoo_quote(ticker):
         "change"       : change,
         "change_pct"   : change_pct,
     }
-# end def fetch_yahoo_quote
+# end def parse_quote
+
+def fetch_all_quotes(tickers_lst):
+    """Fetch all tickers in a single batch request to Yahoo Finance v7 quote endpoint."""
+    symbols = ",".join(tickers_lst)
+    fields  = "regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+    url     = f"https://query1.finance.yahoo.com/v7/finance/quote?symbols={symbols}&fields={fields}"
+    resp    = requests.get(url, headers = HEADERS, timeout = TIMEOUT_SEC)
+    resp.raise_for_status()
+    data    = resp.json()
+    return data["quoteResponse"]["result"]   # list of quote dicts
+# end def fetch_all_quotes
 
 def main():
     # Load tickers
     with open(TICKERS_FILE, "r") as f:
         tickers_lst = json.load(f)
 
-    print(f"Fetching prices for {len(tickers_lst)} tickers...")
+    print(f"Fetching prices for {len(tickers_lst)} tickers in a single batch request...")
 
-    prices_lst  = []
-    errors_lst  = []
+    prices_lst = []
+    errors_lst = []
 
-    for ticker in tickers_lst:
-        try:
-            quote = fetch_yahoo_quote(ticker)
-            prices_lst.append(quote)
-            state = quote["market_state"]
-            price = quote["pre"] or quote["regular"] or quote["post"]
-            pct   = quote["change_pct"]
-            print(f"  {ticker:8s}  {state:10s}  {price:>10.4f}  {f'{pct:+.2f}%' if pct else 'N/A':>8s}")
-        except Exception as e:
-            print(f"  {ticker:8s}  ERROR: {e}")
-            errors_lst.append({"ticker": ticker, "error": str(e)})
+    try:
+        quotes_lst    = fetch_all_quotes(tickers_lst)
+        returned_dct  = {q["symbol"]: q for q in quotes_lst}   # index by symbol for easy lookup
 
-        time.sleep(DELAY_SEC)
+        for ticker in tickers_lst:
+            if ticker not in returned_dct:
+                print(f"  {ticker:8s}  NOT IN RESPONSE")
+                errors_lst.append({"ticker": ticker, "error": "not returned by Yahoo"})
+                continue
+
+            try:
+                quote = parse_quote(returned_dct[ticker])
+                prices_lst.append(quote)
+                state = quote["market_state"]
+                price = quote["pre"] or quote["regular"] or quote["post"]
+                pct   = quote["change_pct"]
+                print(f"  {ticker:8s}  {state:10s}  {price:>10.4f}  {f'{pct:+.2f}%' if pct else 'N/A':>8s}")
+            except Exception as e:
+                print(f"  {ticker:8s}  PARSE ERROR: {e}")
+                errors_lst.append({"ticker": ticker, "error": str(e)})
+
+    except Exception as e:
+        print(f"Batch request failed: {e}")
+        # Mark all tickers as errors if the whole request fails
+        errors_lst = [{"ticker": t, "error": str(e)} for t in tickers_lst]
 
     # Timestamp in Romanian time
     now_ro = datetime.now(tz = ROMANIAN_TZ)
