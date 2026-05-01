@@ -1,127 +1,127 @@
 {
-  "fetched_at": "2026-05-01 13:30:16",
+  "fetched_at": "2026-05-01 13:52:48",
   "fetched_at_tz": "EEST (UTC+3)",
   "prices": [],
   "errors": [
     {
       "ticker": "AAPL",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MSFT",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "GOOGL",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "AMZN",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "NVDA",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "META",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "TSLA",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "BRK-B",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "JPM",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "V",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "UNH",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "XOM",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "LLY",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "JNJ",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MA",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "AVGO",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "PG",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "HD",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MRK",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "COST",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "ABBV",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "CVX",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "KO",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "PEP",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "ADBE",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "WMT",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "BAC",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "TMO",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MCD",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "CRM",
-      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     }
   ]
 }
