@@ -16,13 +16,38 @@ TIMEOUT_SEC  = 10
 ROMANIAN_TZ  = timezone(timedelta(hours = 3))   # EEST (summer); change to 2 for EET winter
 
 HEADERS = {
-    "User-Agent"      : "Mozilla/5.0 (compatible; price-fetcher/1.0)",
-    "Accept"          : "application/json",
+    "User-Agent"      : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept"          : "application/json, text/plain, */*",
     "Accept-Language" : "en-US,en;q=0.9",
+    "Referer"         : "https://finance.yahoo.com/",
+    "Origin"          : "https://finance.yahoo.com",
 }
 
+def get_crumb_and_session():
+    """Obtain a Yahoo Finance crumb token and session cookies.
+    Yahoo requires a crumb (CSRF-like token) since late 2023 for quote API calls.
+    Flow: hit the consent/cookie endpoint first, then fetch the crumb."""
+    session = requests.Session()
+    session.headers.update(HEADERS)
+
+    # Step 1: hit Yahoo Finance to get cookies (including session cookie)
+    consent_url = "https://finance.yahoo.com/quote/AAPL/"
+    session.get(consent_url, timeout = TIMEOUT_SEC)
+
+    # Step 2: fetch crumb using the session cookies obtained above
+    crumb_url  = "https://query1.finance.yahoo.com/v1/test/getcrumb"
+    crumb_resp = session.get(crumb_url, timeout = TIMEOUT_SEC)
+    crumb_resp.raise_for_status()
+    crumb = crumb_resp.text.strip()
+
+    if not crumb or "<" in crumb:   # sanity check — HTML means we got a redirect/error page
+        raise ValueError(f"Invalid crumb received: {crumb[:80]}")
+
+    return session, crumb
+# end def get_crumb_and_session
+
 def parse_quote(q):
-    """Parse a single quote dict from Yahoo Finance v7 response into our output format."""
+    """Parse a single quote dict from Yahoo Finance v8 response into our output format."""
     ticker        = q.get("symbol", "")
     regular_price = q.get("regularMarketPrice")
     prev_close    = q.get("regularMarketPreviousClose")
@@ -55,12 +80,12 @@ def parse_quote(q):
     }
 # end def parse_quote
 
-def fetch_all_quotes(tickers_lst):
-    """Fetch all tickers in a single batch request to Yahoo Finance v7 quote endpoint."""
+def fetch_all_quotes(tickers_lst, session, crumb):
+    """Fetch all tickers in a single batch request to Yahoo Finance v8 quote endpoint."""
     symbols = ",".join(tickers_lst)
     fields  = "regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
-    url     = f"https://query1.finance.yahoo.com/v7/finance/quote?symbols={symbols}&fields={fields}"
-    resp    = requests.get(url, headers = HEADERS, timeout = TIMEOUT_SEC)
+    url     = f"https://query2.finance.yahoo.com/v8/finance/quote?symbols={symbols}&fields={fields}&crumb={crumb}"
+    resp    = session.get(url, timeout = TIMEOUT_SEC)
     resp.raise_for_status()
     data    = resp.json()
     return data["quoteResponse"]["result"]   # list of quote dicts
@@ -77,7 +102,11 @@ def main():
     errors_lst = []
 
     try:
-        quotes_lst    = fetch_all_quotes(tickers_lst)
+        print("Obtaining Yahoo Finance session and crumb...")
+        session, crumb = get_crumb_and_session()
+        print(f"Crumb obtained: {crumb[:10]}...")
+
+        quotes_lst   = fetch_all_quotes(tickers_lst, session, crumb)
         returned_dct  = {q["symbol"]: q for q in quotes_lst}   # index by symbol for easy lookup
 
         for ticker in tickers_lst:
