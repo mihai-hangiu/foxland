@@ -1,337 +1,127 @@
 {
-  "fetched_at": "2026-05-01 12:23:13",
+  "fetched_at": "2026-05-01 13:30:16",
   "fetched_at_tz": "EEST (UTC+3)",
-  "prices": [
+  "prices": [],
+  "errors": [
     {
       "ticker": "AAPL",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 271.35,
-      "pre": null,
-      "post": null,
-      "prev_close": 270.17,
-      "change": 1.18,
-      "change_pct": 0.4368
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "MSFT",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 407.78,
-      "pre": null,
-      "post": null,
-      "prev_close": 424.46,
-      "change": -16.68,
-      "change_pct": -3.9297
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "GOOGL",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 384.8,
-      "pre": null,
-      "post": null,
-      "prev_close": 349.94,
-      "change": 34.86,
-      "change_pct": 9.9617
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "AMZN",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 265.06,
-      "pre": null,
-      "post": null,
-      "prev_close": 263.04,
-      "change": 2.02,
-      "change_pct": 0.7679
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "NVDA",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 199.57,
-      "pre": null,
-      "post": null,
-      "prev_close": 209.25,
-      "change": -9.68,
-      "change_pct": -4.626
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "META",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 611.91,
-      "pre": null,
-      "post": null,
-      "prev_close": 669.12,
-      "change": -57.21,
-      "change_pct": -8.55
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "TSLA",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 381.63,
-      "pre": null,
-      "post": null,
-      "prev_close": 372.8,
-      "change": 8.83,
-      "change_pct": 2.3686
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "BRK-B",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 473.6,
-      "pre": null,
-      "post": null,
-      "prev_close": 475.38,
-      "change": -1.78,
-      "change_pct": -0.3744
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "JPM",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 313.23,
-      "pre": null,
-      "post": null,
-      "prev_close": 309.25,
-      "change": 3.98,
-      "change_pct": 1.287
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "V",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 329.84,
-      "pre": null,
-      "post": null,
-      "prev_close": 334.86,
-      "change": -5.02,
-      "change_pct": -1.4991
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "UNH",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 370.48,
-      "pre": null,
-      "post": null,
-      "prev_close": 370.74,
-      "change": -0.26,
-      "change_pct": -0.0701
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "XOM",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 154.33,
-      "pre": null,
-      "post": null,
-      "prev_close": 154.67,
-      "change": -0.34,
-      "change_pct": -0.2198
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "LLY",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 934.6,
-      "pre": null,
-      "post": null,
-      "prev_close": 851.21,
-      "change": 83.39,
-      "change_pct": 9.7966
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "JNJ",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 229.85,
-      "pre": null,
-      "post": null,
-      "prev_close": 227.35,
-      "change": 2.5,
-      "change_pct": 1.0996
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "MA",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 502.92,
-      "pre": null,
-      "post": null,
-      "prev_close": 525.23,
-      "change": -22.31,
-      "change_pct": -4.2477
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "AVGO",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 417.43,
-      "pre": null,
-      "post": null,
-      "prev_close": 405.45,
-      "change": 11.98,
-      "change_pct": 2.9547
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "PG",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 147.09,
-      "pre": null,
-      "post": null,
-      "prev_close": 146.46,
-      "change": 0.63,
-      "change_pct": 0.4302
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "HD",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 328.8,
-      "pre": null,
-      "post": null,
-      "prev_close": 322.81,
-      "change": 5.99,
-      "change_pct": 1.8556
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "MRK",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 109.18,
-      "pre": null,
-      "post": null,
-      "prev_close": 110.95,
-      "change": -1.77,
-      "change_pct": -1.5953
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "COST",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 1014.53,
-      "pre": null,
-      "post": null,
-      "prev_close": 998.67,
-      "change": 15.86,
-      "change_pct": 1.5881
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "ABBV",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 211.32,
-      "pre": null,
-      "post": null,
-      "prev_close": 203.89,
-      "change": 7.43,
-      "change_pct": 3.6441
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "CVX",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 193.31,
-      "pre": null,
-      "post": null,
-      "prev_close": 192.22,
-      "change": 1.09,
-      "change_pct": 0.5671
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "KO",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 78.76,
-      "pre": null,
-      "post": null,
-      "prev_close": 78.87,
-      "change": -0.11,
-      "change_pct": -0.1395
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "PEP",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 158.49,
-      "pre": null,
-      "post": null,
-      "prev_close": 155.29,
-      "change": 3.2,
-      "change_pct": 2.0607
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "ADBE",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 246.1,
-      "pre": null,
-      "post": null,
-      "prev_close": 243.57,
-      "change": 2.53,
-      "change_pct": 1.0387
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "WMT",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 131.93,
-      "pre": null,
-      "post": null,
-      "prev_close": 128.01,
-      "change": 3.92,
-      "change_pct": 3.0623
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "BAC",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 53.46,
-      "pre": null,
-      "post": null,
-      "prev_close": 52.88,
-      "change": 0.58,
-      "change_pct": 1.0968
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "TMO",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 478.96,
-      "pre": null,
-      "post": null,
-      "prev_close": 466.26,
-      "change": 12.7,
-      "change_pct": 2.7238
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "MCD",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 293.59,
-      "pre": null,
-      "post": null,
-      "prev_close": 290.08,
-      "change": 3.51,
-      "change_pct": 1.21
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     },
     {
       "ticker": "CRM",
-      "market_state": "UNKNOWN",
-      "currency": "USD",
-      "regular": 176.53,
-      "pre": null,
-      "post": null,
-      "prev_close": 181.22,
-      "change": -4.69,
-      "change_pct": -2.588
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL,MSFT,GOOGL,AMZN,NVDA,META,TSLA,BRK-B,JPM,V,UNH,XOM,LLY,JNJ,MA,AVGO,PG,HD,MRK,COST,ABBV,CVX,KO,PEP,ADBE,WMT,BAC,TMO,MCD,CRM&fields=regularMarketPrice,regularMarketPreviousClose,preMarketPrice,postMarketPrice,marketState,currency"
     }
-  ],
-  "errors": []
+  ]
 }
