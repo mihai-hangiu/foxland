@@ -27,7 +27,10 @@ jobs:
         run: pip install requests
 
       - name: Fetch price history
-        run: python fetch_price_history.py
+        run: python fetch_price_history.py || true
+        
+      - name: Show output
+        run: cat prices_history.json 2>/dev/null || echo "FILE NOT CREATED"
 
       - name: Commit and push prices_history.json
         run: |
