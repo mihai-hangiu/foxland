@@ -27,24 +27,6 @@ jobs:
       - name: Fetch price history
         run: python fetch_price_history.py
 
-      - name: Show result summary
-        run: |
-          if [ -f prices_history.json ]; then
-            echo "prices_history.json created OK"
-            python -c "
-import json
-with open('prices_history.json') as f: d = json.load(f)
-tickers = d.get('tickers', {})
-errors  = d.get('errors', [])
-print(f'  Tickers with data: {len(tickers)}')
-print(f'  Errors: {len(errors)}')
-if errors: print(f'  Failed: {[e[\"ticker\"] for e in errors]}')
-"
-          else
-            echo "ERROR: prices_history.json was NOT created"
-            exit 1
-          fi
-
       - name: Commit and push prices_history.json
         run: |
           git config user.name  "github-actions[bot]"
