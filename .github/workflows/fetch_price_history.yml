@@ -25,7 +25,10 @@ jobs:
         run: pip install requests yfinance
 
       - name: Fetch price history
-        run: python fetch_price_history.py
+        run: python fetch_price_history.py || true
+        
+      - name: Show output
+        run: cat prices_history.json 2>/dev/null || echo "FILE NOT CREATED"
 
       - name: Show result summary
         run: |
