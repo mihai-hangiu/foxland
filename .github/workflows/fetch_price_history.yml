@@ -2,7 +2,7 @@ name: Fetch Price History
 
 on:
   schedule:
-    - cron: '30 21 * * 1-5'   # Mon-Fri 21:30 UTC — after US market close
+    - cron: '30 21 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -25,10 +25,7 @@ jobs:
         run: pip install requests yfinance
 
       - name: Fetch price history
-        run: python fetch_price_history.py || true
-        
-      - name: Show output
-        run: cat prices_history.json 2>/dev/null || echo "FILE NOT CREATED"
+        run: python fetch_price_history.py
 
       - name: Show result summary
         run: |
@@ -42,10 +39,6 @@ errors  = d.get('errors', [])
 print(f'  Tickers with data: {len(tickers)}')
 print(f'  Errors: {len(errors)}')
 if errors: print(f'  Failed: {[e[\"ticker\"] for e in errors]}')
-sample = list(tickers.keys())[:3]
-for t in sample:
-    h = tickers[t]['history']
-    print(f'  {t}: {len(h)} days, last={h[-1][\"date\"]} close={h[-1][\"close\"]}')
 "
           else
             echo "ERROR: prices_history.json was NOT created"
