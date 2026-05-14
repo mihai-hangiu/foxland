@@ -1,10 +1,10 @@
 """
 fetch_price_history.py
 
-Fetches 12-month daily close price history for all tickers in tickers.json
-using the Yahoo Finance v8/finance/chart endpoint (same crumb/session approach
-as fetch_prices.py). Merges new data into prices_history.json — already-known
-dates are never overwritten, only new trading days are appended.
+Fetches 12-month daily close price history for all tickers in tickers.json.
+Uses yfinance as primary method, with a direct v7/finance/download CSV request
+as fallback (no crumb required). Merges new data into prices_history.json —
+existing dates are never overwritten, only new trading days are appended.
 
 No API key required. Runs in GitHub Actions.
 
@@ -16,182 +16,212 @@ Output format — prices_history.json:
     "AAPL": {
       "currency": "USD",
       "history": [
-        {"date": "2025-05-14", "open": 189.12, "high": 191.50, "low": 188.00, "close": 190.25, "volume": 55000000},
+        {"date": "2025-05-14", "close": 190.25},
         ...
       ]
-    },
-    ...
+    }
   },
-  "errors": [
-    {"ticker": "XYZ", "error": "not returned by Yahoo"}
-  ]
+  "errors": [{"ticker": "XYZ", "error": "..."}]
 }
 
-History arrays are sorted ascending by date. Dates are YYYY-MM-DD strings (market local date).
+History arrays are sorted ascending by date (YYYY-MM-DD strings).
 """
 
+import csv
+import io
 import json
 import os
+import time
 import requests
+import yfinance as yf
 from datetime import datetime, timezone, timedelta
 
 TICKERS_FILE  = "tickers.json"
 HISTORY_FILE  = "prices_history.json"
-TIMEOUT_SEC   = 15
-HISTORY_DAYS  = 365   # fetch last 12 months on every run; merge logic deduplicates
-
+HISTORY_DAYS  = 365
+TIMEOUT_SEC   = 20
 ROMANIAN_TZ   = timezone(timedelta(hours = 3))   # EEST (summer); change to 2 for EET winter
 
 HEADERS = {
     "User-Agent"      : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept"          : "application/json, text/plain, */*",
+    "Accept"          : "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language" : "en-US,en;q=0.9",
-    "Referer"         : "https://finance.yahoo.com/",
-    "Origin"          : "https://finance.yahoo.com",
 }
 
 
 # ---------------------------------------------------------------------------
-# Yahoo Finance session + crumb (identical pattern to fetch_prices.py)
+# Method 1: yfinance
 # ---------------------------------------------------------------------------
 
-def get_crumb_and_session():
-    """Obtain a Yahoo Finance crumb token and session cookies.
-    Yahoo requires a crumb (CSRF-like token) for chart API calls.
-    Flow: hit the main page first to get cookies, then fetch crumb."""
-    session = requests.Session()
-    session.headers.update(HEADERS)
-
-    # Step 1: hit Yahoo Finance to get session cookies
-    session.get("https://finance.yahoo.com/quote/AAPL/", timeout = TIMEOUT_SEC)
-
-    # Step 2: fetch crumb using the session cookies obtained above
-    crumb_resp = session.get("https://query1.finance.yahoo.com/v1/test/getcrumb", timeout = TIMEOUT_SEC)
-    crumb_resp.raise_for_status()
-    crumb = crumb_resp.text.strip()
-
-    if not crumb or "<" in crumb:   # HTML response means we got an error/redirect page
-        raise ValueError(f"Invalid crumb received: {crumb[:80]}")
-
-    return session, crumb
-# end def get_crumb_and_session
-
-
-# ---------------------------------------------------------------------------
-# History fetch — one request per ticker (chart endpoint has no batch mode)
-# ---------------------------------------------------------------------------
-
-def fetch_ticker_history(ticker, session, crumb):
+def fetch_via_yfinance(ticker):
     """
-    Fetch daily OHLCV data for the last HISTORY_DAYS days via Yahoo v8/finance/chart.
-    Returns a list of dicts: [{"date": "YYYY-MM-DD", "open": ..., "high": ...,
-                                "low": ..., "close": ..., "volume": ...}, ...]
-    Sorted ascending by date. Only includes days where close price is not None.
+    Fetch daily history via yfinance. Returns (currency, history_lst) or raises.
+    history_lst: [{"date": "YYYY-MM-DD", "close": float}, ...]
     """
-    now_ts    = int(datetime.now(tz = timezone.utc).timestamp())
-    start_ts  = now_ts - HISTORY_DAYS * 86400
+    tk   = yf.Ticker(ticker)
+    hist = tk.history(period = "1y", interval = "1d", auto_adjust = True)
 
-    url = (
-        f"https://query2.finance.yahoo.com/v8/finance/chart/{ticker}"
-        f"?period1={start_ts}&period2={now_ts}&interval=1d&events=history&crumb={crumb}"
-    )
+    if hist.empty:
+        raise ValueError("yfinance returned empty DataFrame")
+
+    currency    = "USD"   # yfinance doesn't always expose currency easily; default USD
+    history_lst = []
+    for ts, row in hist.iterrows():
+        date_str = ts.strftime("%Y-%m-%d")
+        close    = row.get("Close")
+        if close is None or (hasattr(close, "__float__") is False):
+            continue
+        history_lst.append({"date": date_str, "close": round(float(close), 4)})
+
+    history_lst.sort(key = lambda d: d["date"])
+    return currency, history_lst
+# end def fetch_via_yfinance
+
+
+# ---------------------------------------------------------------------------
+# Method 2: v7/finance/download CSV (no crumb required)
+# ---------------------------------------------------------------------------
+
+def fetch_via_v7_csv(ticker):
+    """
+    Fetch daily history via Yahoo Finance v7/finance/download endpoint (CSV format).
+    This endpoint does not require a crumb token. Returns (currency, history_lst) or raises.
+    """
+    now_ts   = int(datetime.now(tz = timezone.utc).timestamp())
+    start_ts = now_ts - HISTORY_DAYS * 86400
+
+    url  = (f"https://query1.finance.yahoo.com/v7/finance/download/{ticker}"
+            f"?period1={start_ts}&period2={now_ts}&interval=1d&events=history")
+    resp = requests.get(url, headers = HEADERS, timeout = TIMEOUT_SEC)
+    resp.raise_for_status()
+
+    # Response is CSV: Date,Open,High,Low,Close,Adj Close,Volume
+    reader      = csv.DictReader(io.StringIO(resp.text))
+    history_lst = []
+    for row in reader:
+        date_str = row.get("Date", "").strip()
+        close_s  = row.get("Close", "").strip()
+        if not date_str or not close_s or close_s.lower() == "null":
+            continue
+        try:
+            history_lst.append({"date": date_str, "close": round(float(close_s), 4)})
+        except ValueError:
+            continue
+
+    if not history_lst:
+        raise ValueError("v7 CSV returned no rows")
+
+    history_lst.sort(key = lambda d: d["date"])
+    return "USD", history_lst
+# end def fetch_via_v7_csv
+
+
+# ---------------------------------------------------------------------------
+# Method 3: v8/finance/chart with manual cookie (no crumb, just cookie)
+# ---------------------------------------------------------------------------
+
+def fetch_via_v8_chart(ticker, session):
+    """
+    Fetch via v8/finance/chart using only session cookies (no crumb).
+    Some Yahoo endpoints accept requests with a valid cookie but without crumb
+    when the crumb field is omitted entirely. Returns (currency, history_lst) or raises.
+    """
+    now_ts   = int(datetime.now(tz = timezone.utc).timestamp())
+    start_ts = now_ts - HISTORY_DAYS * 86400
+
+    url  = (f"https://query2.finance.yahoo.com/v8/finance/chart/{ticker}"
+            f"?period1={start_ts}&period2={now_ts}&interval=1d&events=history")
     resp = session.get(url, timeout = TIMEOUT_SEC)
     resp.raise_for_status()
     data = resp.json()
 
-    result    = data["chart"]["result"]
+    result = data.get("chart", {}).get("result")
     if not result:
-        raise ValueError("Empty chart result from Yahoo")
+        raise ValueError("v8 chart returned empty result")
 
-    chart     = result[0]
-    meta      = chart.get("meta", {})
-    currency  = meta.get("currency", "USD")
+    chart          = result[0]
+    currency       = chart.get("meta", {}).get("currency", "USD")
     timestamps_lst = chart.get("timestamp", [])
-    indicators     = chart.get("indicators", {})
-    quote_lst      = indicators.get("quote", [{}])
-    quote          = quote_lst[0] if quote_lst else {}
-
-    opens_lst   = quote.get("open",   [])
-    highs_lst   = quote.get("high",   [])
-    lows_lst    = quote.get("low",    [])
-    closes_lst  = quote.get("close",  [])
-    volumes_lst = quote.get("volume", [])
+    closes_lst     = chart.get("indicators", {}).get("quote", [{}])[0].get("close", [])
 
     history_lst = []
     for i, ts in enumerate(timestamps_lst):
         close = closes_lst[i] if i < len(closes_lst) else None
         if close is None:
-            continue   # skip days with no data (e.g. partial last day)
+            continue
+        history_lst.append({"date": datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d"), "close": round(close, 4)})
 
-        date_str = datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d")
-        open_v   = opens_lst[i]   if i < len(opens_lst)   else None
-        high_v   = highs_lst[i]   if i < len(highs_lst)   else None
-        low_v    = lows_lst[i]    if i < len(lows_lst)    else None
-        vol_v    = volumes_lst[i] if i < len(volumes_lst) else None
-
-        history_lst.append({
-            "date"   : date_str,
-            "open"   : round(open_v,  4) if open_v  is not None else None,
-            "high"   : round(high_v,  4) if high_v  is not None else None,
-            "low"    : round(low_v,   4) if low_v   is not None else None,
-            "close"  : round(close,   4),
-            "volume" : int(vol_v)        if vol_v   is not None else None,
-        })
+    if not history_lst:
+        raise ValueError("v8 chart returned no close prices")
 
     history_lst.sort(key = lambda d: d["date"])
     return currency, history_lst
+# end def fetch_via_v8_chart
+
+
+# ---------------------------------------------------------------------------
+# Fetch with fallback chain
+# ---------------------------------------------------------------------------
+
+def fetch_ticker_history(ticker, session):
+    """
+    Try yfinance → v7 CSV → v8 chart (no crumb) in order.
+    Returns (currency, history_lst) or raises if all methods fail.
+    """
+    errors_lst = []
+
+    for method_name, method_fn in [
+        ("yfinance",  lambda: fetch_via_yfinance(ticker)),
+        ("v7-csv",    lambda: fetch_via_v7_csv(ticker)),
+        ("v8-nocrum", lambda: fetch_via_v8_chart(ticker, session)),
+    ]:
+        try:
+            currency, history_lst = method_fn()
+            if history_lst:
+                print(f"    [{method_name}] OK  {len(history_lst)} days")
+                return currency, history_lst
+            errors_lst.append(f"{method_name}: empty result")
+        except Exception as e:
+            errors_lst.append(f"{method_name}: {e}")
+
+    raise ValueError(" | ".join(errors_lst))
 # end def fetch_ticker_history
 
 
 # ---------------------------------------------------------------------------
-# Merge — new data is appended; existing dates are never overwritten
+# Merge + trim
 # ---------------------------------------------------------------------------
 
 def merge_history(existing_lst, new_lst):
-    """
-    Merge new_lst into existing_lst. Existing dates win (never overwritten).
-    Returns a new list sorted ascending by date.
-    """
+    """Merge new entries into existing; existing dates are never overwritten. Returns sorted list."""
     existing_dct = {entry["date"]: entry for entry in existing_lst}
     for entry in new_lst:
         if entry["date"] not in existing_dct:
             existing_dct[entry["date"]] = entry
-    merged_lst = sorted(existing_dct.values(), key = lambda d: d["date"])
-    return merged_lst
+    return sorted(existing_dct.values(), key = lambda d: d["date"])
 # end def merge_history
 
 
-# ---------------------------------------------------------------------------
-# Trim to rolling 12-month window so the file doesn't grow indefinitely
-# ---------------------------------------------------------------------------
-
 def trim_to_12_months(history_lst):
-    """Remove entries older than 366 days from the most recent date in the list."""
+    """Remove entries older than 366 days relative to the most recent date in the list."""
     if not history_lst:
         return history_lst
-    latest_date = datetime.strptime(history_lst[-1]["date"], "%Y-%m-%d")
-    cutoff      = latest_date - timedelta(days = 366)
+    latest  = datetime.strptime(history_lst[-1]["date"], "%Y-%m-%d")
+    cutoff  = latest - timedelta(days = 366)
     return [e for e in history_lst if datetime.strptime(e["date"], "%Y-%m-%d") >= cutoff]
 # end def trim_to_12_months
 
 
 # ---------------------------------------------------------------------------
-# Load / save prices_history.json
+# Load / save
 # ---------------------------------------------------------------------------
 
 def load_existing_history():
-    """Load prices_history.json if it exists, return empty skeleton otherwise."""
     if os.path.isfile(HISTORY_FILE):
         with open(HISTORY_FILE, "r", encoding = "utf-8") as f:
             return json.load(f)
     return {"updated_at": None, "updated_at_tz": "EEST (UTC+3)", "tickers": {}, "errors": []}
 # end def load_existing_history
-
-
-def save_history(data_dct):
-    with open(HISTORY_FILE, "w", encoding = "utf-8") as f:
-        json.dump(data_dct, f, indent = 2)
-# end def save_history
 
 
 # ---------------------------------------------------------------------------
@@ -205,36 +235,35 @@ def main():
     print(f"Fetching 12-month daily history for {len(tickers_lst)} tickers...")
 
     existing_dct = load_existing_history()
-    tickers_dct  = existing_dct.get("tickers", {})   # preserve existing data
+    tickers_dct  = existing_dct.get("tickers", {})
     errors_lst   = []
 
-    try:
-        print("Obtaining Yahoo Finance session and crumb...")
-        session, crumb = get_crumb_and_session()
-        print(f"Crumb obtained: {crumb[:10]}...")
-    except Exception as e:
-        print(f"FATAL: could not obtain crumb — {e}")
-        return   # abort without touching the file if we can't authenticate
+    # Shared requests session with cookies (used by v8 fallback)
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    session.get("https://finance.yahoo.com/quote/AAPL/", timeout = TIMEOUT_SEC)   # seed cookies
 
     for ticker in tickers_lst:
+        print(f"  {ticker:8s} ...", flush = True)
         try:
-            currency, new_history_lst = fetch_ticker_history(ticker, session, crumb)
+            currency, new_history_lst = fetch_ticker_history(ticker, session)
 
-            existing_entry  = tickers_dct.get(ticker, {})
-            existing_hist   = existing_entry.get("history", [])
-            merged_lst      = merge_history(existing_hist, new_history_lst)
-            trimmed_lst     = trim_to_12_months(merged_lst)
+            existing_hist = tickers_dct.get(ticker, {}).get("history", [])
+            merged_lst    = merge_history(existing_hist, new_history_lst)
+            trimmed_lst   = trim_to_12_months(merged_lst)
 
             tickers_dct[ticker] = {"currency": currency, "history": trimmed_lst}
 
-            added    = len(trimmed_lst) - len(existing_hist)
-            last_dt  = trimmed_lst[-1]["date"] if trimmed_lst else "—"
-            last_px  = trimmed_lst[-1]["close"] if trimmed_lst else "—"
-            print(f"  {ticker:8s}  {len(trimmed_lst):3d} days  last={last_dt}  close={last_px:>10}  +{max(added, 0)} new")
+            added   = len(trimmed_lst) - len(existing_hist)
+            last_dt = trimmed_lst[-1]["date"]  if trimmed_lst else "—"
+            last_px = trimmed_lst[-1]["close"] if trimmed_lst else "—"
+            print(f"    {len(trimmed_lst):3d} days  last={last_dt}  close={last_px}  +{max(added, 0)} new")
 
         except Exception as e:
-            print(f"  {ticker:8s}  ERROR: {e}")
+            print(f"    ERROR: {e}")
             errors_lst.append({"ticker": ticker, "error": str(e)})
+
+        time.sleep(0.3)   # be polite — avoid rate limiting between tickers
 
     now_ro     = datetime.now(tz = ROMANIAN_TZ)
     output_dct = {
@@ -244,10 +273,14 @@ def main():
         "errors"        : errors_lst,
     }
 
-    save_history(output_dct)
-    print(f"\nSaved history for {len(tickers_dct)} tickers to {HISTORY_FILE}  ({now_ro.strftime('%Y-%m-%d %H:%M:%S')} EEST)")
+    with open(HISTORY_FILE, "w", encoding = "utf-8") as f:
+        json.dump(output_dct, f, indent = 2)
+
+    ok_count  = len(tickers_dct)
+    err_count = len(errors_lst)
+    print(f"\nSaved history for {ok_count} tickers to {HISTORY_FILE}  ({now_ro.strftime('%Y-%m-%d %H:%M:%S')} EEST)")
     if errors_lst:
-        print(f"Errors ({len(errors_lst)}): {[e['ticker'] for e in errors_lst]}")
+        print(f"Errors ({err_count}): {[e['ticker'] for e in errors_lst]}")
 # end def main
 
 
