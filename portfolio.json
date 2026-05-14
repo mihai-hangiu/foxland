@@ -1,0 +1,146 @@
+[
+    {
+        "ticker":               "AGX",
+        "company_name":         "Argan, Inc.",
+        "company_description":  "Argan, Inc. is a holding company operating through subsidiaries that provide engineering, procurement, construction, commissioning, maintenance, and technical consulting services to the power generation market in the US, Ireland, and the UK. Operates through three segments: Power (large-scale energy project EPC), Industrial (on-site fabrication and maintenance for industrial plants), and Teledata (underground and aerial cabling for telecom/power networks). Serves independent power producers, public utilities, and equipment suppliers.",
+        "target_price_min":     "n/a",
+        "target_price_max":     "n/a",
+        "investment_risk":      "n/a",
+        "last_report_comment":  "n/a"
+    },
+    {
+        "ticker":               "ALAB",
+        "company_name":         "Astera Labs, Inc.",
+        "company_description":  "Astera Labs is a fabless semiconductor company designing purpose-built, high-speed connectivity solutions for cloud and AI data center infrastructure. Its Intelligent Connectivity Platform integrates PCIe/CXL retimers, Ethernet smart cable modules, CXL memory connectivity controllers, and smart fabric switches, unified by the COSMOS software suite for fleet-scale management. Serves hyperscalers and OEMs. Founded in 2017, listed on Nasdaq since March 2024.",
+        "target_price_min":     365,
+        "target_price_max":     375,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "CLS",
+        "company_name":         "Celestica Inc.",
+        "company_description":  "Celestica is a Canadian contract electronics manufacturer and supply chain solutions provider (NYSE/TSX: CLS), incorporated in 1994 and headquartered in Toronto. It operates through two segments: Advanced Technology Solutions (ATS — aerospace & defense, industrial, health tech, capital equipment) and Connectivity & Cloud Solutions (CCS — servers, storage, enterprise and telecom networking). Serves hyperscalers, OEMs, and service providers globally across North America, Europe, and Asia.",
+        "target_price_min":     570,
+        "target_price_max":     620,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "CRDO",
+        "company_name":         "Credo Technology Group Holding Ltd.",
+        "company_description":  "Credo Technology is a fabless semiconductor company (Nasdaq: CRDO) focused on high-speed, power-efficient connectivity solutions for data centers and AI infrastructure. Products include SerDes chiplets, active electrical cables (AEC), optical DSPs, and line-card retimers targeting 100G–800G+ speeds. Competes in the AI networking interconnect space alongside Marvell and Broadcom. Headquartered in San Jose, CA, incorporated in the Cayman Islands.",
+        "target_price_min":     275,
+        "target_price_max":     320,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "ERO",
+        "company_name":         "Ero Copper Corp.",
+        "company_description":  "Ero Copper (TSX/NYSE: ERO) is a Canadian copper mining company with operations primarily in Brazil. Its main asset is the MCSA Mining Complex (Curaçá Valley, Bahia state), one of the highest-grade open-pit and underground copper mines globally. Also developing the Boa Esperança copper project (Pará state) and the Xavantina nickel-gold-cobalt operations. Strong exposure to copper's secular demand tailwind from electrification and grid buildout.",
+        "target_price_min":     65,
+        "target_price_max":     75,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "GOOGL",
+        "company_name":         "Alphabet Inc.",
+        "company_description":  "Alphabet Inc. (Nasdaq: GOOGL) is the parent company of Google, the world's dominant search engine and digital advertising platform. Operates through three segments: Google Services (Search, YouTube, Android, Chrome, Maps, Play, and hardware), Google Cloud (GCP, Workspace), and Other Bets (Waymo, DeepMind, Verily, etc.). One of the largest companies globally by market cap, with massive free cash flow generation and growing AI/cloud ambitions.",
+        "target_price_min":     "n/a",
+        "target_price_max":     "n/a",
+        "investment_risk":      "n/a",
+        "last_report_comment":  "n/a"
+    },
+    {
+        "ticker":               "IDCC",
+        "company_name":         "InterDigital, Inc.",
+        "company_description":  "InterDigital (Nasdaq: IDCC) is a technology research and development company that designs and licenses fundamental wireless and video technologies. Holds a large portfolio of patents spanning 3G, 4G, 5G, WiFi, and video compression standards (HEVC, VVC). Revenue is primarily royalty-based, collected from device manufacturers (Apple, Samsung, Huawei, etc.). Asset-light model with high margins and recurring licensing cash flows. Headquartered in Wilmington, Delaware.",
+        "target_price_min":     "n/a",
+        "target_price_max":     "n/a",
+        "investment_risk":      "n/a",
+        "last_report_comment":  "n/a"
+    },
+    {
+        "ticker":               "IESC",
+        "company_name":         "IES Holdings, Inc.",
+        "company_description":  "IES Holdings (Nasdaq: IESC) is a diversified US electrical and mechanical contractor and infrastructure services company. Operates through four segments: Residential (single-family and multi-family electrical), Commercial & Industrial (large commercial electrical projects), Communications (structured cabling, AV, security), and Infrastructure Solutions (modular power and process solutions for data centers and industrial clients). Benefits from data center construction boom and grid electrification trends.",
+        "target_price_min":     550,
+        "target_price_max":     620,
+        "investment_risk":      "6/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "INOD",
+        "company_name":         "Innodata Inc.",
+        "company_description":  "Innodata (Nasdaq: INOD) is a digital services and AI company providing data annotation, AI model training data, and digital transformation services to technology companies, including several major AI platform developers. Pivoted from legacy business process outsourcing to AI data services; a key beneficiary of the large-scale human-annotated training data demand from frontier AI labs. Headquartered in Ridgefield Park, NJ.",
+        "target_price_min":     90,
+        "target_price_max":     115,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "LEU",
+        "company_name":         "Centrus Energy Corp.",
+        "company_description":  "Centrus Energy (NYSE American: LEU) is the only US company licensed to produce high-assay low-enriched uranium (HALEU), a key fuel for next-generation nuclear reactors. Operates the American Centrifuge Plant in Piketon, Ohio, under a DOE contract. Also supplies standard LEU to utilities and conducts technical services for the nuclear fuel cycle industry. Strategically positioned as domestic nuclear fuel supply chains are rebuilt amid energy security concerns.",
+        "target_price_min":     350,
+        "target_price_max":     420,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "MU",
+        "company_name":         "Micron Technology, Inc.",
+        "company_description":  "Micron Technology (Nasdaq: MU) is one of the world's largest manufacturers of DRAM, NAND flash, and NOR flash memory semiconductors, as well as SSDs. Key product lines include DDR5 server DRAM, LPDDR5 mobile memory, 3D NAND NGSFF/enterprise SSDs, and — critically — High Bandwidth Memory (HBM3E) for AI accelerators (Nvidia H100/H200, AMD MI300). One of only three global DRAM suppliers (alongside Samsung and SK Hynix). Headquartered in Boise, Idaho.",
+        "target_price_min":     520,
+        "target_price_max":     560,
+        "investment_risk":      "6/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "OKLO",
+        "company_name":         "Oklo Inc.",
+        "company_description":  "Oklo (NYSE: OKLO) is a next-generation nuclear fission company developing compact fast fission power plants (Aurora powerhouses) designed to produce clean, reliable electricity at small scale (1–100 MWe). Co-founded by Sam Altman (CEO of OpenAI), who chairs the board. Backed by DOE site use permit for Idaho National Laboratory. Targets remote industrial, defense, and data center customers seeking firm, carbon-free power. Pre-revenue; commercialization timeline targeting late 2020s.",
+        "target_price_min":     125,
+        "target_price_max":     125,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "POWL",
+        "company_name":         "Powell Industries, Inc.",
+        "company_description":  "Powell Industries (Nasdaq: POWL) designs, manufactures, and services custom-engineered electrical equipment — primarily switchgear, motor control centers, and power control rooms — for power distribution in oil & gas, petrochemical, liquefied natural gas, and industrial facilities. Products are safety-critical, highly specified, and long lead-time items. Headquartered in Houston, Texas. Key beneficiary of LNG buildout and industrial capex cycles.",
+        "target_price_min":     "n/a",
+        "target_price_max":     "n/a",
+        "investment_risk":      "n/a",
+        "last_report_comment":  "n/a"
+    },
+    {
+        "ticker":               "STRL",
+        "company_name":         "Sterling Infrastructure, Inc.",
+        "company_description":  "Sterling Infrastructure (Nasdaq: STRL) is a US infrastructure and construction company operating through three segments: E-Infrastructure Solutions (site development for data centers, warehouses, and manufacturing — the highest-margin segment), Transportation Solutions (highways, bridges, airfields for government clients), and Building Solutions (residential and light commercial concrete foundations in high-growth Sun Belt markets). Strong secular tailwind from data center and reshoring capex cycles.",
+        "target_price_min":     null,
+        "target_price_max":     null,
+        "investment_risk":      null,
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "UUUU",
+        "company_name":         "Energy Fuels Inc.",
+        "company_description":  "Energy Fuels (NYSE American: UUUU) is the largest US uranium producer and a growing producer of rare earth elements (REE). Operates the White Mesa Mill in Utah — the only conventional uranium mill currently operating in the US — and multiple uranium mines. Expanding into REE separation and monazite processing as a strategic diversification. Well-positioned for the domestic nuclear fuel renaissance and US REE supply chain buildout under energy security policy tailwinds.",
+        "target_price_min":     38,
+        "target_price_max":     42,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    },
+    {
+        "ticker":               "VRT",
+        "company_name":         "Vertiv Holdings Co.",
+        "company_description":  "Vertiv (NYSE: VRT) designs, manufactures, and services critical digital infrastructure equipment for data centers, communication networks, and industrial facilities. Core products include power management systems (UPS, PDU, switchgear), thermal management (precision cooling, liquid cooling for AI compute racks), IT infrastructure (racks, KVM, monitoring), and integrated modular solutions. Direct beneficiary of the global data center capacity buildout driven by AI workload growth. Headquartered in Columbus, Ohio.",
+        "target_price_min":     360,
+        "target_price_max":     380,
+        "investment_risk":      "7/10",
+        "last_report_comment":  null
+    }
+]

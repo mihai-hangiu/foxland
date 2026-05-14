@@ -1,0 +1,38 @@
+name: Fetch Price History
+
+on:
+  schedule:
+    # Run once per day at 21:30 UTC (00:30 EEST next day) — after US market close + after-hours settle
+    # This guarantees the last full trading day's data is available from Yahoo Finance
+    - cron: '30 21 * * 1-5'   # Mon-Fri; Sat/Sun markets are closed so no new data
+  workflow_dispatch:           # allow manual trigger from Actions tab (useful for initial population)
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-history:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch price history
+        run: python fetch_price_history.py
+
+      - name: Commit and push prices_history.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add prices_history.json
+          git diff --cached --quiet || git commit -m "chore: update price history $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
