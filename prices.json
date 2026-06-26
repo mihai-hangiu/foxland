@@ -1,127 +1,127 @@
 {
-  "fetched_at": "2026-06-26 06:56:07",
+  "fetched_at": "2026-06-26 13:40:26",
   "fetched_at_tz": "EEST (UTC+3)",
   "prices": [],
   "errors": [
     {
       "ticker": "AAPL",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MSFT",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "GOOGL",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "AMZN",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "NVDA",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "META",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "TSLA",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "BRK-B",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "JPM",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "V",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "UNH",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "XOM",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "LLY",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "JNJ",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MA",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "AVGO",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "PG",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "HD",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MRK",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "COST",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "ABBV",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "CVX",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "KO",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "PEP",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "ADBE",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "WMT",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "BAC",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "TMO",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "MCD",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     },
     {
       "ticker": "CRM",
-      "error": "429 Client Error: Too Many Requests for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
+      "error": "401 Client Error: Unauthorized for url: https://query1.finance.yahoo.com/v1/test/getcrumb"
     }
   ]
 }
