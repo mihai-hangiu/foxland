@@ -1,14 +1,10 @@
 {
-  "updated_at": "2026-11-12 05:21:47",
+  "updated_at": "2026-11-13 05:00:09",
   "updated_at_tz": "EEST (UTC+3)",
   "tickers": {
     "AAPL": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 268.9303
-        },
         {
           "date": "2025-11-11",
           "close": 274.7396
@@ -1016,16 +1012,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "MSFT": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 503.9046
-        },
         {
           "date": "2025-11-11",
           "close": 506.5735
@@ -2033,16 +2029,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "GOOGL": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 289.7064
-        },
         {
           "date": "2025-11-11",
           "close": 290.9148
@@ -3050,16 +3046,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "AMZN": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 248.4
-        },
         {
           "date": "2025-11-11",
           "close": 249.1
@@ -4067,16 +4063,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "NVDA": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 199.0282
-        },
         {
           "date": "2025-11-11",
           "close": 193.1388
@@ -5084,16 +5080,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "META": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 630.7052
-        },
         {
           "date": "2025-11-11",
           "close": 626.033
@@ -6101,16 +6097,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "TSLA": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 445.23
-        },
         {
           "date": "2025-11-11",
           "close": 439.62
@@ -7118,16 +7114,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "BRK-B": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 496.98
-        },
         {
           "date": "2025-11-11",
           "close": 497.07
@@ -8135,16 +8131,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "JPM": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 313.8608
-        },
         {
           "date": "2025-11-11",
           "close": 312.6029
@@ -9152,16 +9148,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "V": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 332.8104
-        },
         {
           "date": "2025-11-11",
           "close": 336.8556
@@ -10169,16 +10165,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "UNH": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 316.9681
-        },
         {
           "date": "2025-11-11",
           "close": 322.7539
@@ -11186,16 +11182,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "XOM": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 116.419
-        },
         {
           "date": "2025-11-11",
           "close": 117.9552
@@ -12203,16 +12199,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "LLY": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 963.6142
-        },
         {
           "date": "2025-11-11",
           "close": 985.5254
@@ -13220,16 +13216,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "JNJ": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 186.2313
-        },
         {
           "date": "2025-11-11",
           "close": 191.5886
@@ -14237,16 +14233,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "MA": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 551.1835
-        },
         {
           "date": "2025-11-11",
           "close": 556.5562
@@ -15254,16 +15250,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "AVGO": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 356.9568
-        },
         {
           "date": "2025-11-11",
           "close": 350.5525
@@ -16271,16 +16267,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "PG": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 143.3945
-        },
         {
           "date": "2025-11-11",
           "close": 146.3905
@@ -17288,16 +17284,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "HD": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 365.6052
-        },
         {
           "date": "2025-11-11",
           "close": 369.3656
@@ -18305,16 +18301,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "MRK": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 85.3824
-        },
         {
           "date": "2025-11-11",
           "close": 89.5162
@@ -19322,16 +19318,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "COST": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 912.9861
-        },
         {
           "date": "2025-11-11",
           "close": 911.2909
@@ -20339,16 +20335,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "ABBV": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 215.1792
-        },
         {
           "date": "2025-11-11",
           "close": 221.5349
@@ -21356,16 +21352,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "CVX": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 152.4396
-        },
         {
           "date": "2025-11-11",
           "close": 153.0174
@@ -22373,16 +22369,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "KO": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 69.5499
-        },
         {
           "date": "2025-11-11",
           "close": 70.6249
@@ -23390,16 +23386,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "PEP": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 139.9879
-        },
         {
           "date": "2025-11-11",
           "close": 142.4025
@@ -24407,16 +24403,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "ADBE": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 328.85
-        },
         {
           "date": "2025-11-11",
           "close": 333.22
@@ -25424,16 +25420,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "WMT": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 101.808
-        },
         {
           "date": "2025-11-11",
           "close": 102.8219
@@ -26441,16 +26437,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "BAC": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 52.8451
-        },
         {
           "date": "2025-11-11",
           "close": 53.0528
@@ -27458,16 +27454,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "TMO": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 575.3481
-        },
         {
           "date": "2025-11-11",
           "close": 585.4705
@@ -28475,16 +28471,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "MCD": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 295.6642
-        },
         {
           "date": "2025-11-11",
           "close": 303.3054
@@ -29492,16 +29488,16 @@
         {
           "date": "2026-11-11",
           "close": NaN
+        },
+        {
+          "date": "2026-11-12",
+          "close": NaN
         }
       ]
     },
     "CRM": {
       "currency": "USD",
       "history": [
-        {
-          "date": "2025-11-10",
-          "close": 240.7184
-        },
         {
           "date": "2025-11-11",
           "close": 243.497
@@ -30508,6 +30504,10 @@
         },
         {
           "date": "2026-11-11",
+          "close": NaN
+        },
+        {
+          "date": "2026-11-12",
           "close": NaN
         }
       ]
